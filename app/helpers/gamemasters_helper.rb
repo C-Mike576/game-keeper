@@ -1,0 +1,2 @@
+module GamemastersHelper
+end
