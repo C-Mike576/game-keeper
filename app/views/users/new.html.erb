@@ -1,0 +1,17 @@
+<h1>Sign up!</h1>
+
+<%= form_with model: @user do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <br>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <br>
+    <%= f.label :role %>
+    <%= f.select(:role, options_for_select([["Gamemaster", 1], ["Player", 2]])) %>
+    <br>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br>
+    <%= f.submit "Sign Up" %>
+<% end %>
