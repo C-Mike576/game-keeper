@@ -3,5 +3,6 @@
 <%= form_with model: @gamemaster do |f| %>
     <%= f.label :name, "Nickname:" %>
     <%= f.text_field :name %>
-
-    <% end %>
+    <br>
+    <%= f.submit "Create Gamemaster" %> 
+<% end %>

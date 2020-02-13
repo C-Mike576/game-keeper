@@ -5,8 +5,17 @@ class GamemastersController < ApplicationController
     end
 
     def create 
-
+        @gamemaster = Gamemaster.new(params.require(:gamemaster).permit(:name))
+        @gamemaster.user_id = current_user.id
+        if @gamemaster.save
+            redirect_to gamemaster_path(@gamemaster)
+        else
+            render :new
+        end
     end
 
+    def show
+        @gamemaster = Gamemaster.find_by_id(params[:id])
+    end
     
 end
