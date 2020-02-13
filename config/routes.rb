@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  delete '/logout', to: 'sessions#destroy'
+  get '/login', to: 'sessions#create'
   resources :notes
   resources :players
   resources :gamemasters
