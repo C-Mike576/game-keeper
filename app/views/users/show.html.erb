@@ -1,20 +1,25 @@
 <h1><%= @user.username %>'s Page</h1>
 
-<h3>Current User: <%= current_user.username %></h3>
-
-<h4>Gamemasters that are me<h4>
+<h4>Gamemasters that are me:<h4>
     <ul>
         <%@user.gamemasters.each do |g|%>
-            <li><%= g.name %></li>
+            <li><%= g.name %> <%= link_to "Delete", g, method: :delete %></li>
         <% end %>
     </ul>
 
-<h4>Players that are me<h4>
+<h4>Players that are me:<h4>
     <ul>
         <%@user.players.each do |p|%>
-            <li><%= p.name %></li>
+            <li><%= p.name %> <%= link_to "Delete", p, method: :delete %></li>
         <% end %>
     </ul>
 
+
+<nav>
 <%= link_to "Create a Gamemaster", new_gamemaster_path, method: :get %>
 <%= link_to "Create a Player", new_player_path, method: :get %>
+</nav>
+
+<br>
+
+<p>Current User: <%= current_user.username %></p>

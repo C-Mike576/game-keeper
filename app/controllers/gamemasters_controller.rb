@@ -18,4 +18,9 @@ class GamemastersController < ApplicationController
         @gamemaster = Gamemaster.find_by_id(params[:id])
     end
     
+    def destroy
+        Gamemaster.find_by_id(params[:id]).delete
+        redirect_to user_path(current_user)
+    end
+
 end

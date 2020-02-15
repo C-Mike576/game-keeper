@@ -18,5 +18,10 @@ class PlayersController < ApplicationController
         @player = Player.find_by_id(params[:id])
     end
 
+    def destroy
+        Player.find_by_id(params[:id]).delete
+        redirect_to user_path(current_user)
+    end
+
 
 end
