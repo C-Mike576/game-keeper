@@ -13,8 +13,13 @@
             <li><%= p.name %> <%= link_to "Delete", p, method: :delete %></li>
         <% end %>
     </ul>
-
-
+<h4>Notes that include me</h4>
+<ul>
+        <%@user.notes.each do |n|%>
+            <li><%= n.title %> <%= link_to "View", note_path(n), method: :get %></li>
+        <% end %>
+    </ul>
+<br>
 <nav>
 <%= link_to "Create a Gamemaster", new_gamemaster_path, method: :get %>
 <%= link_to "Create a Player", new_player_path, method: :get %>

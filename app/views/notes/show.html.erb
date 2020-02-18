@@ -1,3 +1,6 @@
 <h2><%= @note.title %></h2>
 <br>
 <p><%= @note.content %></p>
+<br>
+<p>Sent from: <%= @note.gamemaster.name %>
+<p>Sent to: <%= @note.player.name %>

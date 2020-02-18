@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
     has_many :gamemasters
     has_many :players
+
+    has_many :notes, through: :gamemasters
+    has_many :notes, through: :players
 end
