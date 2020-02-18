@@ -1,8 +1,8 @@
-<h1>Create Player</h1>
+<h1>Edit Player</h1>
 
 <% if @player.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being created:</h2>
+    <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being Edited:</h2>
  
     <ul>
     <% @player.errors.full_messages.each do |msg| %>
@@ -16,5 +16,5 @@
     <%= f.label :name, "Nickname:" %>
     <%= f.text_field :name %>
     <br>
-    <%= f.submit "Create Player" %> 
+    <%= f.submit "Edit Player" %> 
 <% end %>

@@ -18,6 +18,21 @@ class GamemastersController < ApplicationController
         @gamemaster = Gamemaster.find_by_id(params[:id])
     end
     
+    def edit 
+        @gamemaster = Gamemaster.find_by_id(params[:id])
+    end
+
+    def update
+        @gamemaster = Gamemaster.find_by_id(params[:id])
+        @gamemaster.update(params.require(:gamemaster).permit(:name))
+        if @gamemaster.valid?
+            redirect_to gamemaster_path(@gamemaster)
+        else
+            render :edit
+        end
+    end
+
+
     def destroy
         Gamemaster.find_by_id(params[:id]).delete
         flash.now.alert = "Gamemaster Delete Successful"

@@ -1,8 +1,8 @@
-<h1>Create Gamemaster</h1>
+<h1>Edit Gamemaster</h1>
 
 <% if @gamemaster.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@gamemaster.errors.count, "error") %> prohibited this gamemaster from being created:</h2>
+    <h2><%= pluralize(@gamemaster.errors.count, "error") %> prohibited this gamemaster from being Edited:</h2>
  
     <ul>
     <% @gamemaster.errors.full_messages.each do |msg| %>
@@ -16,5 +16,5 @@
     <%= f.label :name, "Nickname:" %>
     <%= f.text_field :name %>
     <br>
-    <%= f.submit "Create Gamemaster" %> 
+    <%= f.submit "Update Gamemaster" %> 
 <% end %>

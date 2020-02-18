@@ -11,7 +11,12 @@ class NotesController < ApplicationController
     end
 
     def new
-        @note = Note.new
+        if params[:gamemaster_id] && @gamemaster = 
+            Gamemaster.find_by_id(params[:gamemaster_id])
+        @note = Note.new(gamemaster_id: params[:gamemaster_id])
+        else
+            @note = Note.new
+        end
     end
 
     def create 
@@ -29,7 +34,7 @@ class NotesController < ApplicationController
 
     def update
         @note = Note.find_by_id(params[:id])
-        @note.update(require(:note).permit(:title, :content))
+        @note.update(params.require(:note).permit(:title, :content))
         if @note.valid?
             redirect_to note_path(@note)
         else

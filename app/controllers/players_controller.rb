@@ -18,6 +18,20 @@ class PlayersController < ApplicationController
         @player = Player.find_by_id(params[:id])
     end
 
+    def edit 
+        @player = Player.find_by_id(params[:id])
+    end
+
+    def update
+        @player = Player.find_by_id(params[:id])
+        @player.update(params.require(:player).permit(:name))
+        if @player.valid?
+            redirect_to player_path(@player)
+        else
+            render :edit
+        end
+    end
+
     def destroy
         Player.find_by_id(params[:id]).delete
         flash.now.alert = "Player Delete Successful"

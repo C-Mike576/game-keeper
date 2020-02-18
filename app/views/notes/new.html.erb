@@ -13,7 +13,7 @@
 <% end %>
 
 
-<%= form_with model: @note do |f| %>
+<%= form_with model: @note, local:true do |f| %>
     <%= f.label :gamemaster_id, "Who is sending the message" %>
     <%= f.collection_select(:gamemaster_id, current_user.gamemasters, :id, :name, prompt: true) %>
     <br>
