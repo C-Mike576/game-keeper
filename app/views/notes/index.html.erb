@@ -1,1 +1,6 @@
 <h1>All the Notes</h1>
+
+<ul>
+<% @notes.each do |note| %>
+    <li><%= note.title %></li>
+<% end %></ul>

@@ -1,1 +1,23 @@
 <h1>Edit Note</h1>
+
+<% if @note.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+ 
+    <ul>
+    <% @note.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @note do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <br>
+    <%= f.submit "Send Note" %>
+<% end %>
