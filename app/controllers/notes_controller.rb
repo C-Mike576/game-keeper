@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
-    before_action :logged_in?
-    skip_before_action :logged_in?, only: [:index]
+    before_action :require_login
+    skip_before_action :require_login, only: [:index]
     
     def index
         @notes = Note.all 
