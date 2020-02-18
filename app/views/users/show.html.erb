@@ -1,22 +1,24 @@
 <h1><%= @user.username %>'s Page</h1>
 
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
+
+<h3>View gamemaster or player page to see notes.</h3>
+
 <h4>Gamemasters that are me:<h4>
     <ul>
         <%@user.gamemasters.each do |g|%>
-            <li><%= g.name %> <%= link_to "Delete", g, method: :delete %></li>
+            <li><%= g.name %> <%= link_to "View", gamemaster_path(g), method: :get %>
+            <%= link_to "Delete", g, method: :delete %></li>
         <% end %>
     </ul>
 
 <h4>Players that are me:<h4>
     <ul>
         <%@user.players.each do |p|%>
-            <li><%= p.name %> <%= link_to "Delete", p, method: :delete %></li>
-        <% end %>
-    </ul>
-<h4>Notes that include me</h4>
-<ul>
-        <%@user.notes.each do |n|%>
-            <li><%= n.title %> <%= link_to "View", note_path(n), method: :get %></li>
+            <li><%= p.name %> <%= link_to "View", player_path(p), method: :get %>
+            <%= link_to "Delete", p, method: :delete %></li>
         <% end %>
     </ul>
 <br>

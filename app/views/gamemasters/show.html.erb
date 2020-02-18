@@ -1,3 +1,11 @@
 <h1>Gamemaster Page for <%= @gamemaster.name %></h1>
-<h3><%= @gamemaster.user.username %> owns this page. </h3>
+
+<h3>Notes sent to me</h3>
+<ul>
+<% @gamemaster.notes.each do |note| %>
+    <li><%= note.title %> <%= link_to "View", gamemaster_note_url(@gamemaster, note), method: :get %></li>
+<% end %>
+</ul>
+
+<h5><%= @gamemaster.user.username %> controls this page. </h5>
 

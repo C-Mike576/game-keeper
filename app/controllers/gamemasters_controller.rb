@@ -20,6 +20,7 @@ class GamemastersController < ApplicationController
     
     def destroy
         Gamemaster.find_by_id(params[:id]).delete
+        flash.now.alert = "Gamemaster Delete Successful"
         redirect_to user_path(current_user)
     end
 

@@ -20,6 +20,7 @@ class PlayersController < ApplicationController
 
     def destroy
         Player.find_by_id(params[:id]).delete
+        flash.now.alert = "Player Delete Successful"
         redirect_to user_path(current_user)
     end
 

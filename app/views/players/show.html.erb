@@ -1,3 +1,12 @@
 <h1>Player Page for <%= @player.name %></h1>
-<h3><%= @player.user.username %> owns this page. </h3>
+
+<h3>Notes sent to me</h3>
+<ul>
+<% @player.notes.each do |note| %>
+    <li><%= note.title %> <%= link_to "View", player_note_url(@player, note), method: :get %></li>
+<% end %>
+</ul>
+
+<h5><%= @player.user.username %> controls this page. </h5>
+
 
