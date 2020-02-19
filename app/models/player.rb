@@ -7,5 +7,10 @@ class Player < ApplicationRecord
     has_many :notes
     has_many :gamemasters, through: :notes
 
-    #scope alpha
+#   scope :order_by_name, -> { lower(order(name: :asc)) }
+
+
+    scope :order_by_name, -> {
+        order(arel_table['name'].lower.asc)
+      }
 end

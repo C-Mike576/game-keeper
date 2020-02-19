@@ -14,7 +14,7 @@
     <%= f.text_area :content %>
     <br>
     <%= f.label :player_id, "Who is receiving the message" %>
-    <%= f.collection_select(:player_id, Player.all, :id, :name, prompt: true) %>
+    <%= f.collection_select(:player_id, Player.order_by_name, :id, :name, prompt: true) %>
     <br>
     <%= f.submit "Send Note" %>
 <% end %>
