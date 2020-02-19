@@ -3,16 +3,21 @@ class NotesController < ApplicationController
     skip_before_action :require_login, only: [:index]
     
     def index
-        @notes = Note.all 
+        if params[:gamemaster_id] && @gamemaster = 
+            Gamemaster.find_by_id(params[:gamemaster_id])
+            @notes = @gamemaster.notes
+        else
+            @notes = Note.all 
+        end
     end
 
     def show
-        @note = Note.find_by_id(params[:id])
+        find_note
     end
 
     def new
         if params[:gamemaster_id] && @gamemaster = 
-            Gamemaster.find_by_id(params[:gamemaster_id])
+            current_user.gamemasters.find_by_id(params[:gamemaster_id])
         @note = Note.new(gamemaster_id: params[:gamemaster_id])
         else
             redirect_to notes_path
@@ -54,5 +59,14 @@ private
     def note_params
         params.require(:note).permit(:title, :content, :gamemaster_id, :player_id)
     end
+
+    def find_note
+        @note = Note.find_by_id(params[:id]) 
+        if @note == nil
+            redirect_to user_path(current_user)
+        end
+
+    end
+
 
 end

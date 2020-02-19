@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   end
 
   resources :players, only: [:new, :create, :show, :edit, :update] do
-    resources :notes 
+    resources :notes, only: [:index, :show]
   end
 
-  resources :notes
+  resources :notes, only: [:index]
   resources :users, only: [:show, :new, :create]
 end

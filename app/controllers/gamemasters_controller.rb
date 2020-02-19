@@ -16,6 +16,9 @@ class GamemastersController < ApplicationController
 
     def show
         @gamemaster = Gamemaster.find_by_id(params[:id])
+        if @gamemaster.user_id != session[:user_id]
+            redirect_to gamemaster_notes_path(@gamemaster)
+        end
     end
     
     def edit 
