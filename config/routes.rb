@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
     
   delete '/logout', to: 'sessions#destroy'
-  get '/login', to: 'sessions#new'
+  get '/login', to: 'sessions#new', as: '/login'
   post '/login', to: 'sessions#create'
   
-  resources :gamemasters do
+  resources :gamemasters, only: [:new, :create, :show, :edit, :update] do
     resources :notes
   end
 
-  resources :players do
+  resources :players, only: [:new, :create, :show, :edit, :update] do
     resources :notes 
   end
 
   resources :notes
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, only: [:show, :new, :create]
 end

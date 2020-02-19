@@ -31,11 +31,4 @@ class PlayersController < ApplicationController
             render :edit
         end
     end
-
-    def destroy
-        Player.find_by_id(params[:id]).delete
-        redirect_to user_path(current_user)
-    end
-
-
 end
