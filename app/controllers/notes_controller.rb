@@ -1,18 +1,22 @@
 class NotesController < ApplicationController
     before_action :require_login
+    before_action :find_note
     skip_before_action :require_login, only: [:index]
+    skip_before_action :find_note, only: [:index, :new, :create]
     
     def index
         if params[:gamemaster_id] && @gamemaster = 
             Gamemaster.find_by_id(params[:gamemaster_id])
             @notes = @gamemaster.notes
+        elsif params[:player_id] && @player = 
+            Player.find_by_id(params[:player_id])
+            @notes = @player.notes
         else
             @notes = Note.all 
         end
     end
 
     def show
-        find_note
     end
 
     def new
@@ -34,11 +38,9 @@ class NotesController < ApplicationController
     end 
 
     def edit 
-        @note = Note.find_by_id(params[:id])
     end
 
     def update
-        @note = Note.find_by_id(params[:id])
         @note.update(params.require(:note).permit(:title, :content))
         if @note.valid?
             redirect_to note_path(@note)
@@ -48,7 +50,6 @@ class NotesController < ApplicationController
     end
 
     def destroy
-        @note = Note.find_by_id(params[:id])
         @note.destroy
         redirect_to user_path(current_user)
     end
