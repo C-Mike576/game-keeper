@@ -15,7 +15,7 @@ class NotesController < ApplicationController
             Gamemaster.find_by_id(params[:gamemaster_id])
         @note = Note.new(gamemaster_id: params[:gamemaster_id])
         else
-            @note = Note.new
+            redirect_to notes_path
         end
     end
 
