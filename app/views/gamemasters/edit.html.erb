@@ -1,20 +1,5 @@
 <h1>Edit Gamemaster</h1>
 
-<% if @gamemaster.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@gamemaster.errors.count, "error") %> prohibited this gamemaster from being Edited:</h2>
- 
-    <ul>
-    <% @gamemaster.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: "layouts/errors", locals: {object: @gamemaster} %>
 
-<%= form_with model: @gamemaster, local:true do |f| %>
-    <%= f.label :name, "Nickname:" %>
-    <%= f.text_field :name %>
-    <br>
-    <%= f.submit "Update Gamemaster" %> 
-<% end %>
+<%= render partial: "layouts/form", locals: {object: @gamemaster} %>

@@ -1,0 +1,6 @@
+<%= form_with model: object, local:true do |f| %>
+    <%= f.label :name, "Nickname:" %>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.submit %> 
+<% end %>
