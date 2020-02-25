@@ -8,7 +8,7 @@ class GamemastersController < ApplicationController
     end
 
     def create 
-        @gamemaster = Gamemaster.new(params.require(:gamemaster).permit(:name))
+        @gamemaster = Gamemaster.new(gamemaster_params)
         @gamemaster.user_id = current_user.id
         if @gamemaster.save
             redirect_to gamemaster_path(@gamemaster)
@@ -27,7 +27,7 @@ class GamemastersController < ApplicationController
     end
 
     def update
-        @gamemaster.update(params.require(:gamemaster).permit(:name))
+        @gamemaster.update(gamemaster_params)
         if @gamemaster.valid?
             redirect_to gamemaster_path(@gamemaster)
         else
@@ -37,6 +37,10 @@ class GamemastersController < ApplicationController
 
 
     private
+
+    def gamemaster_params
+        params.require(:gamemaster).permit(:name)
+    end
 
     def find_gamemaster
         @gamemaster = Gamemaster.find_by_id(params[:id]) 

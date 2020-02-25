@@ -8,7 +8,7 @@ class PlayersController < ApplicationController
     end
 
     def create 
-        @player = Player.new(params.require(:player).permit(:name))
+        @player = Player.new(player_params)
         @player.user_id = current_user.id
         if @player.save
             redirect_to player_path(@player)
@@ -27,7 +27,7 @@ class PlayersController < ApplicationController
     end
 
     def update
-        @player.update(params.require(:player).permit(:name))
+        @player.update(player_params)
         if @player.valid?
             redirect_to player_path(@player)
         else
@@ -36,6 +36,10 @@ class PlayersController < ApplicationController
     end
 
     private
+
+    def player_params
+        params.require(:player).permit(:name)
+    end
 
     def find_player
         @player = Player.find_by_id(params[:id]) 
