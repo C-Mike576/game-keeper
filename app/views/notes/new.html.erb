@@ -4,8 +4,12 @@
 
 
 <%= form_with model: @note, local:true do |f| %>
-    <%= f.label :gamemaster_id, "Who is sending the message" %>
-    <%= f.collection_select(:gamemaster_id, current_user.gamemasters, :id, :name, prompt: true) %>
+    <% if !@gamemaster %> 
+        <%= f.label :gamemaster_id, "Who is sending the message" %>
+        <%= f.collection_select(:gamemaster_id, current_user.gamemasters, :id, :name, prompt: true) %>
+    <% else %>
+        <%= f.hidden_field :gamemaster_id %>    
+    <% end %>
     <br>
     <%= f.label :title %>
     <%= f.text_field :title %>
