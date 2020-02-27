@@ -3,12 +3,10 @@
 <%= render partial: "layouts/errors", locals: {object: @note} %>
 
 
-<%= form_with model: @note, local:true do |f| %>
+<%= form_with model:  [@gamemaster, @note], local:true do |f| %>
     <% if !@gamemaster %> 
         <%= f.label :gamemaster_id, "Who is sending the message" %>
-        <%= f.collection_select(:gamemaster_id, current_user.gamemasters, :id, :name, prompt: true) %>
-    <% else %>
-        <%= f.hidden_field :gamemaster_id %>    
+        <%= f.collection_select(:gamemaster_id, current_user.gamemasters, :id, :name, prompt: true) %> 
     <% end %>
     <br>
     <%= f.label :title %>

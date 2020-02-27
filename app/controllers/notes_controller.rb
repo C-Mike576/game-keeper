@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
     before_action :require_login
     before_action :find_note
-    before_action :find_gamemaster, only:[:new]
+    before_action :find_gamemaster, only:[:new, :create]
     skip_before_action :require_login, only: [:index]
     skip_before_action :find_note, only: [:index, :new, :create]
     
@@ -25,7 +25,6 @@ class NotesController < ApplicationController
     end
 
     def create
-        @gamemaster = Gamemaster.find(params[:note][:gamemaster_id])
         @note = @gamemaster.notes.build(note_params)
             if @note.save
                 redirect_to note_path(@note)
